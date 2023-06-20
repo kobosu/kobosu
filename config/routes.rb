@@ -15,7 +15,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
 
  
   namespace :admin do
-    root :to =>"homes#top"
+    root to: "homes#top"
     resources :sessions, only: [:new, :create, :destroy]
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
@@ -25,7 +25,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   end
   
   scope module: :public do
-    root :to =>"homes#top"
+    root to: "homes#top"
     get "about" =>"homes#about", as: 'about'
     resources :items, only: [:index,:show,]
     resources :registrations, only: [:new,:create]
