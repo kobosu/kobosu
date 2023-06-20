@@ -1,50 +1,5 @@
 Rails.application.routes.draw do
-  get 'order_items/update'
-  get 'orders/show'
-  get 'orders/update'
-  get 'customers/index'
-  get 'customers/show'
-  get 'customers/edit'
-  get 'customers/update'
-  get 'genres/index'
-  get 'genres/create'
-  get 'genres/edit'
-  get 'genres/update'
-  get 'items/index'
-  get 'items/new'
-  get 'items/create'
-  get 'items/show'
-  get 'items/edit'
-  get 'items/update'
-  get 'shipping_addresses/index'
-  get 'shipping_addresses/edit'
-  get 'shipping_addresses/create'
-  get 'shipping_addresses/update'
-  get 'shipping_addresses/destroy'
-  get 'orders/new'
-  get 'orders/confilm'
-  get 'orders/complete'
-  get 'orders/create'
-  get 'orders/index'
-  get 'orders/show'
-  get 'cart_items/index'
-  get 'cart_items/update'
-  get 'cart_items/destroy'
-  get 'cart_items/destroy_all'
-  get 'cart_items/create'
-  get 'customers/show'
-  get 'customers/edit'
-  get 'customers/update'
-  get 'customers/check'
-  get 'sessions/new'
-  get 'sessions/create'
-  get 'sessions/destroy'
-  get 'registrations/new'
-  get 'registrations/create'
-  get 'items/index'
-  get 'items/show'
-  get 'homes/top'
-  get 'homes/about'
+ 
   # 顧客用
 # URL /customers/sign_in ...
 devise_for :customers,skip: [:passwords], controllers: {
@@ -58,6 +13,33 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 
+ 
+  namespace :admin do
+    root :to =>"homes#top"
+    resources :sessions, only: [:new, :create, :destroy]
+    resources :items, only: [:index, :new, :create, :show, :edit, :update]
+    resources :genres, only: [:index, :create, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
+    resources :order_items, only: [:update]
+    resources :orders, only: [:show, :update]
+  end
+  
+  scope module: :public do
+    root :to =>"homes#top"
+    get "about" =>"homes#about", as: 'about'
+    resources :items, only: [:index,:show,]
+    resources :registrations, only: [:new,:create]
+    resources :sessions, only: [:new, :create, :destroy]
+    resources :customers, only: [:show, :edit, :update]
+    get 'customers/check' => 'customers#check', as: 'check'
+    patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw'
+    resources :cart_items, only: [:index, :update, :destroy, :create]
+    delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all'
+    resources :orders, only: [:new, :create, :index, :show]
+    post "orders/confilm" =>"orders#confilm", as: 'confilm'
+    post "orders/complete" =>"orders#complete", as: 'complete'
+    resources :shipping_addresses, only:[:index, :edit, :update, :destroy, :create]
+  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
