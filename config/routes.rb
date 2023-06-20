@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
 # 顧客用
 # URL /customers/sign_in ...
 devise_for :customers,skip: [:passwords], controllers: {
@@ -21,6 +22,7 @@ namespace :admin do
      resources :order_items, only: [:update]
      resources :orders, only: [:show, :update]
    end
+
 
    scope module: :public do
      root :to =>"homes#top"
