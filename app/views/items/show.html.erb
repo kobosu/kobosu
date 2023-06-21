@@ -1,2 +1,21 @@
-<h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
+<!--<div class="container">-->
+<!--  <div class="row">-->
+    <h2>商品一覧</h2>
+    
+    <table class='table'>
+          <P>
+            <%= image_tag @item.get_profile_image, size:"100x100" %><br>
+          </p>
+          <tr>商品名</tr>
+          <tr>商品説明</tr>
+          <tr>ジャンル</tr>
+          <tr>税込価格<br>(税抜価格)</tr>
+          <tr>販売ステータス</tr>
+          　<td><%= @item.name %></td>
+          　<td><%= @item.explanation %></td>
+          　<td><%#= item.genre_name %></td>
+          　 # アソシエーション考慮
+            <td><%#= 販売ステータス %></td>
+            
+            
+      </table>
