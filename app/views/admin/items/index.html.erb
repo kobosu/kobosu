@@ -1,0 +1,27 @@
+
+  　　 <h2>商品一覧</h2>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>税抜価格</th>
+            <th>ジャンル</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td><%= item.id %></td>
+            <td><%= item.name %></td>
+            <td><%= item.tax_out_price %></td>
+            <td><%#= item.tax_out_priceの税抜金額算出 %></td>
+            <td><%#= item.genre_name %></td>
+            <td><%#= 販売ステータス %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      
+      <%= link_to "編集する", admin_item_path(:id), method: :edit, class: "btn btn-primary" %></td>
