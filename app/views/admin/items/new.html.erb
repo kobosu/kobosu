@@ -18,6 +18,10 @@
         <%= f.number_field :tax_out_price %>
 
         <label>販売ステータス</label>
+        <%= f.radio_button :is_onsele, 0 %>
+        <%= f.label :is_onsele, "販売中" %>
+        <%= f.radio_button :is_onsele, 1 %>
+        <%= f.label :is_onsele, "販売停止" %>
 
-      <%= f.submit '新規登録' %>
-      <% end %>
+        <%= f.submit '新規登録' %>
+        <% end %>

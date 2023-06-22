@@ -7,12 +7,14 @@ class Admin::ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    # @item.is_onsele = true
     @item.save
     redirect_to admin_items_path
   end
 
   def index
     @items = Item.all
+    @genres = Genre.all
 
   end
 
@@ -22,17 +24,17 @@ class Admin::ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    @genres = Genre.all
   end
 
   def update
     item = Item.find(params[:id])
     item.update(item_params)
-    redirect_to item_path(item.id)
-    #リンク先確認・修正
+    redirect_to admin_item_path(item.id)
   end
 
   def item_params
-    params.require(:item).permit(:name, :tax_out_price, :explanation, :profile_image)
+    params.require(:item).permit(:name, :tax_out_price, :explanation, :profile_image, :genre_id, :is_onsele)
   end
 
 end

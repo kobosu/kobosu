@@ -14,14 +14,14 @@
         <% @items.each do |item| %>
           <tr>
             <td><%= item.id %></td>
-            <td><%= item.name %></td>
-            <td><%= item.tax_out_price %></td>
+            <td><%= link_to item.name, admin_item_path(item.id) %></td>
+            <td><%= item.tax_out_price.to_s(:delimited) %></td>
             <td><%#= item.tax_out_priceの税抜金額算出 %></td>
             <td><%#= item.genre_name %></td>
-            <td><%#= 販売ステータス %></td>
+            <td><%= item.is_onsele %></td>
           </tr>
         <% end %>
         </tbody>
       </table>
-      
-      <%= link_to "編集する", admin_item_path(:id), method: :edit, class: "btn btn-primary" %></td>
+
+

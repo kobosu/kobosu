@@ -1,45 +1,28 @@
-<!--<div class="container">-->
-<!--  <div class="row">-->
-<!--    <div class="col-md-4">-->
-<!--    </div>-->
-<!--    <div class="col-md-5">-->
+
     <h2>商品編集</h2>
-      <%= form_with model: @item, url:update_item_path(@item.id), method: :patch do |f| %>
-      #リンク先確認・修正
-      <!--<div class="form-group">-->
-        <label>商品画像</label><br>
-        <%= f.file_field :#profile_image, accept: "image/*" %>
-      <!--</div>-->
 
-      <!--<div class="form-group">-->
+      <%= form_with model: @item, url: admin_item_path, method: :patch do |f| %>
+
+      <label>商品画像</label><br>
+        <%= f.file_field :profile_image, accept: "image/*" %>
+
         <label>商品名</label>
-        <%= f.text_field :name#, class: "form-control" %>
-      <!--</div>-->
+        <%= f.text_field :name %>
 
-      <!--<div class="form-group">-->
         <label>商品説明</label>
-        <%= f.text_area :explanation#, class: "form-control" %>
-      <!--</div>-->
+        <%= f.text_area :explanation %>
 
-      <!--<div class="form-group">-->
         <label>ジャンル</label>
-        <%= f.collection_select(:genre_id, @genres, :id, :name ) :%>
-        #アソシエーション考慮？？
-      <!--</div>-->
+        <%= f.collection_select :genre_id, @genres, :id, :name %>
 
-      <!--<div class="form-group">-->
         <label>税抜価格</label>
-        <%= f.number_field :tax_out_price#, class: "form-control" %>
-      <!--</div>-->
+        <%= f.number_field :tax_out_price %>
 
-       <!--<div class="form-group">-->
         <label>販売ステータス</label>
-      <!--</div>-->
+        <%= f.radio_button :is_onsele, 0 %>
+        <%= f.label :is_onsele, "販売中" %>
+        <%= f.radio_button :is_onsele, 1 %>
+        <%= f.label :is_onsele, "販売停止" %>
 
-      <!--<div class="form-group">-->
-      <%= f.submit '変更を保存'#, class: "btn btn-secondary" %>
-      <!--</div>-->
-      <% end %>
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+        <%= f.submit '変更を保存' %>
+        <% end %>
