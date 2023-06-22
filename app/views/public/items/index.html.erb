@@ -1,15 +1,20 @@
-    <h2>商品一覧</h2>
+  <h2>商品一覧</h2>
+
+
   　   <table class="table table-hover">
   　     <tbody>
   　       <% @items.each do |item| %>
+  　       <% unless item.is_onsele == false %>
           <tr>
-            <th><%#= link_to(item) do %>
-                <%#= image_tag item.get_profile_image, size:"50x50" %>
-                <%# end %>
+            <th><%= link_to item_path(item.id) do %>
+                <%= image_tag item.get_profile_image(100,100) %>
+                <% end %>
             </th>
             <th><%= link_to item.name, item_path(item.id) %></th>
             <th>￥<%= item.tax_out_price.to_s(:delimited) %></th>
           </tr>
           <% end %>
+          <% end %>
         </tbody>
       </table>
+
