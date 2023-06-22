@@ -1,4 +1,4 @@
-class CustomersController < ApplicationController
+class Public::CustomersController < ApplicationController
   def show
   end
 
@@ -10,7 +10,7 @@ class CustomersController < ApplicationController
 
   def check
   end
-  
+
   def withdraw
   end
 end
