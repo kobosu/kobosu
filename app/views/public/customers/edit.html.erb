@@ -1,2 +1,51 @@
 <h1>Customers#edit</h1>
 <p>Find me in app/views/customers/edit.html.erb</p>
+
+<h2><%= @customer.last_name+customer.first_name %>さんの会員情報編集</h2>
+
+     <p>会員ID</p>
+     <p><%= @customer.id %></p>
+
+ <%= form_with model: @customer do |f| %>
+  <div class="form-group">
+  <p for="customer_name">氏名</p>
+  <%= f.text_field :last_name %>
+  <%= f.text_field :first_name %>
+  </div>
+  
+  <div class="form-group">
+  <p for="customer_name_kana">フリガナ</p>
+  <%= f.text_field :last_name_kana %>
+  <%= f.text_field :first_name_kana %>
+  </div>
+
+  <div class="form-group">
+  <p for="customer_postcode">郵便番号</p>
+  <%= f.text_field :postcode %>
+  </div>
+
+  <div class="form-group">
+  <p for="customer_address">住所</p>
+  <%= f.text_field :address %>
+  </div>
+
+  <div class="form-group">
+  <p for="customer_telephone_number">電話番号</p>
+  <%= f.text_field :telephone_number %>
+  </div>
+
+  <div class="form-group">
+  <p for="customer_telephone_number">メールアドレス</p>
+  <%= f.text_field :email %>
+  </div>
+
+  <div class="form-group">
+<p for="customer_telephone_number">会員ステータス</p>
+<%= form.radio_button :is_active, :true %>
+<%= form.label :true, "有効" %>
+
+<%= form.radio_button :is_active, :false %>
+<%= form.label :false, "退会" %>
+</div>
+
+  <% end %>
