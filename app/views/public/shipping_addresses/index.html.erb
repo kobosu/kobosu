@@ -1,2 +1,45 @@
-<h1>ShippingAddresses#index</h1>
-<p>Find me in app/views/shipping_addresses/index.html.erb</p>
+<h2>配送先登録/一覧</h2>
+
+<%= form_with model: shipping_address do |f| %>
+<div class="form-group">
+  <p for="shipping_address_postcode">郵便番号(ハイフンなし)</p>
+  <%= f.text_field :postcode %>
+  </div>
+  
+  <div class="form-group">
+  <p for="shipping_address_address">住所</p>
+  <%= f.text_area :address %>
+  </div>
+  
+    <div class="form-group">
+  <p for="shipping_address_name">宛名</p>
+  <%= f.text_area :name %>
+  </div>
+  
+  <div class="form-group">
+  <%= f.submit '新規登録', class: "btn btn-success" %>
+  </div>
+<% end %>
+
+<table>
+   <thead>
+    <tr>
+      <th>郵便番号</th>
+      <th>住所</th>
+      <th>宛名</th>
+      <th colspan="2"></th>
+    </tr>
+   </thead>
+     <tbody>
+<% @shipping_addresses.each do |shipping_address| %>
+<tbody>
+   <tr>
+    <td><%= shipping_address.postcode %></td>
+    <td><%= shipping_address.address %></td>
+    <td><%= shipping_address.name %></td>
+    <td><%= link_to "編集する", edit_shipping_address(shipping_address.customer.id), class: "btn btn-sm btn-success" %>
+        <%= link_to "削除する", shipping_address_path(shipping_address.id), method: :delete, data: { confirm: "本当に消しますか？" }, class: "btn btn-sm btn-danger" %></td>
+   </tr>
+  </tbody>
+<% end %>
+</table>
