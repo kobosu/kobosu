@@ -1,2 +1,29 @@
-<h1>CartItems#index</h1>
-<p>Find me in app/views/cart_items/index.html.erb</p>
+<h3>ショッピングカート</h3>
+
+ <table>
+  <thead>
+   <tr>
+    <th>商品名</th>
+    <th>単価(税込)</th>
+    <th>数量</th>
+    <th>小計</th>
+    <th colspan="1"></th>
+   </tr>
+  </thead>
+
+  <%= button_to "カートを空にする", cart_items_path, method: :delete %>
+
+  <tbody>
+   <% @cartitems.each do |f|%>
+    <tr>
+     <td><%= f.hidden_field :item_id, value: @item.id %></td>
+     <td><%= f.item.with_tax_price %></td>
+     <td><%= f.select :quantity, [size: 10, min: 1], {include_blank: '個数選択'} %></td>
+     <td><%= f.subtotal %></td>
+     <td><%= link_to "削除する", cart_items_path, method: :delete, data: { confirm: '本当に削除しますか?' } %></td>
+      <% @合計金額 +=  (cart_item.item.price * 1.1).floor * cart_item.amount %>
+    </tr>
+   <% end %>
+  </tbody>
+ </table>
+
