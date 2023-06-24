@@ -1,2 +1,36 @@
-<h1>Orders#confilm</h1>
-<p>Find me in app/views/orders/confilm.html.erb</p>
+<h2>注文情報確認</h2>
+
+　　　<table class="table table-hover">
+
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @order.each do |order| %>
+          <tr>
+            <td><%= order.id %></td>
+            <td><%= order.order_item.purchase_price %></td>
+            <td><%= order.order_item.quantity %></td>
+            <td><%= (order.order_item.purchase_price * 1.1).floor * order.order_item.quantity %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+
+      <label>支払方法</label>
+      　<%= order.payment_method %>
+      <label>お届け先</label>
+      　〒<%= order.postcode + address + name %>
+
+
+
+      #注文機能に送るコードをhidden_field を用いて記載する
+      <td><%= link_to
+
+
+
