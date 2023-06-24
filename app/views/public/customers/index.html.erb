@@ -1,25 +1,48 @@
-<h1>Customers#index</h1>
-<p>Find me in app/views/customers/index.html.erb</p>
+<div class = "container" >
+     <div class = "row" >
+      <div class = "col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+        <h4 class="font-weight-bold col-3 ml-4 mb-4 text-nowrap">マイページ</h4>
+      </div>
+     </div>
+           <div class="d-flex flex-row">
+                   <div class="mr-5" ><strong>登録情報</strong></div>
+                   <div class="ml-5"><%= link_to "編集する", edit_customer_path(current_customer) , class: "btn btn-sm btn-info" %></div>
+           </div>
 
+                 <table class="table">
 
-<h2>会員一覧</h2>
-  <table>
-   <thead>
-    <tr>
-      <th>会員ID</th>
-      <th>指名</th>
-      <th>メールアドレス</th>
-      <th>ステータス</th>
-    </tr>
-   </thead>
-     <tbody>
-<% @customers.each do |customer| %>
-   <tr>
-    <td><%= customer.id %></td>
-    <td><%= link_to customer.last_name+customer.first_name, customer_path(customer.id) %></td>
-    <td><%= customer.email %></td>
-    <td><%= customer.is_active %></td>
-  </tr>
-  </tbody>
-<% end %>
-</table>
+                     <tr>
+                       <th >氏名</th>
+                       <td><%= @customer.last_name + "　" + @customer.first_name %></td>
+                     </tr>
+                     <tr>
+                       <th >カナ</th>
+                       <td><%= @customer.last_name_kana + "　" + @customer.first_name_kana %></td>
+                     </tr>
+                     <tr>
+                       <th >郵便番号</th>
+                       <td><%= @customer.postcode %></td>
+                     </tr>
+                     <tr>
+                       <th >住所</th>
+                       <td><%= @customer.address %></td>
+                     </tr>
+                     <tr>
+                       <th >電話番号</th>
+                       <td><%= @customer.telephone_number %></td>
+                     </tr>
+                     <tr>
+                       <th >メールアドレス</th>
+                       <td><%= @customer.email %></td>
+                     </tr>
+
+                 </table>
+
+                  <table>
+                      <div><strong>配送先</strong></div>
+                      <div><%= link_to "一覧を見る", shipping_addresses_path, class: "btn btn-sm btn-secondary" %></div>
+
+                       <div><strong>注文履歴</strong></div>
+                       <div><%= link_to "一覧を見る", orders_path, class: "btn btn-sm btn-secondary" %></div>
+                   </table>
+    </div> 
