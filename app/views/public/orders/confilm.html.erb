@@ -30,7 +30,12 @@
 
 
       #注文機能に送るコードをhidden_field を用いて記載する
-      <td><%= link_to
+      <%= form_with model: @order, url: complete_path, method: :post do |f| %>
+        <%#= f.hidden_field :customer_id, :value => current_customer.id %>
+        <%#= f.hidden_field :item_id, :value => @item.id %>
+        <%= f.select :amount, *[1..10] %>
+        <% end %>
+
 
 
 
