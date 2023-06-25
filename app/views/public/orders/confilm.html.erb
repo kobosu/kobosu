@@ -1,7 +1,6 @@
 <h2>注文情報確認</h2>
 
 　　　<table class="table table-hover">
-
         <thead>
           <tr>
             <th>商品名</th>
@@ -11,31 +10,41 @@
           </tr>
         </thead>
         <tbody>
-        <% @order.each do |order| %>
+        <% @cart_items.each do |cart_item| %>
           <tr>
-            <td><%= order.id %></td>
-            <td><%= order.order_item.purchase_price %></td>
-            <td><%= order.order_item.quantity %></td>
-            <td><%= (order.order_item.purchase_price * 1.1).floor * order.order_item.quantity %></td>
+            <td><%= cart_item.item.name %></td>
+            <td><%= cart_item.item.tax_out_price %></td>
+            <td><%= cart_item.quantity %></td>
+            <td><%= (cart_item.item.tax_out_price * 1.1).floor * cart_item.quantity %></td>
           </tr>
         <% end %>
         </tbody>
       </table>
+      
+<table class="table table-hover">
+        <thead>
+          <tr>
+            <th>送料</th>
+            <th>800</th>
+        <tbody>
+          <tr>
+            <td>商品合計</td>
+            <td>
+            </td>
+            <td>請求金額</td>
+            <td></td>
+          </tr>
+        </tbody>
 
       <label>支払方法</label>
       　<%= order.payment_method %>
       <label>お届け先</label>
       　〒<%= order.postcode + address + name %>
 
-
-
-      #注文機能に送るコードをhidden_field を用いて記載する
-      <%= form_with model: @order, url: complete_path, method: :post do |f| %>
-        <%#= f.hidden_field :customer_id, :value => current_customer.id %>
-        <%#= f.hidden_field :item_id, :value => @item.id %>
-        <%= f.select :amount, *[1..10] %>
+      <%= form_with model: @order, url: #ceratアクションのpathを記入_path, method: :post do |f| %>
+        <%= f.hidden_field :payment_method, :value => 0 %>
+        <%= f.hidden_field :postcode, :value =>  %>
+        <%= f.hidden_field :address, :value =>  %>
+        <%= f.hidden_field :name, :value =>  %>
+        <%= f.select "注文を確定する" %>
         <% end %>
-
-
-
-
