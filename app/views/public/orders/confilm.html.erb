@@ -42,7 +42,7 @@
       　〒<%= order.postcode + address + name %>
 
       <%= form_with model: @order, url: #ceratアクションのpathを記入_path, method: :post do |f| %>
-        <%= f.hidden_field :payment_method, :value => 0 %>
+        <%= f.hidden_field :payment_method, :value => %>
         <%= f.hidden_field :postcode, :value =>  %>
         <%= f.hidden_field :address, :value =>  %>
         <%= f.hidden_field :name, :value =>  %>
