@@ -5,9 +5,9 @@ class Public::OrdersController < ApplicationController
 
   def confilm
     @order = Order.new(order_params)
-    
+
     case select_address
-    
+
     when 0 then
     @order = Order.new(order_params)
     @order.postal_code = current_customer.postal_code
@@ -20,22 +20,22 @@ class Public::OrdersController < ApplicationController
     @order.postal_code = @address.postal_code
     @order.address = @address.address
     @order.name = @address.name
-    
-    
+
+
     when 2 then
     @shipping_address = ShippingAddress.new
     @shipping_address.postal_code = params[:order][:postcode]
     @shipping_address.address = params[:order][:address]
     @shipping_address.name = params[:order][:name]
-    
+
     @shipping_address.save
-    
+
     @order.postal_code = @shipping_address.postal_code
     @order.address = @shipping_address.address
     @order.name = @shipping_address.name
-      
+
     end
-    
+
     @cart_items = current_costomer.cart_items
   end
 
