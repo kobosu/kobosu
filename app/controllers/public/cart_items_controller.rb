@@ -1,6 +1,7 @@
 class Public::CartItemsController < ApplicationController
   def index
-   @cartitems = CartItem.all
+   @cart_items = CartItem.all
+   @total = 0
   end
 
   def update
@@ -16,13 +17,14 @@ class Public::CartItemsController < ApplicationController
 
   def create
     @cart_item = CartItem.new(params_cart_item)
-     @cart_items.each do |cart_item|
-      if cart_item.item_id == @cart_item.item_id
-        new_quantity = cart_item.quantity + @cart_item.quantity
-        cart_item.update_attribute(:quantity, new_quantity)
-        @cart_item.delete
+    @cart_items=current_customer.cart_items.all
+    @cart_items.each do |cart_item|
+      if cart_item.item_id==@cart_item.item_id
+          new_quantity = cart_item.quantity + @cart_item.quantity
+          cart_item.update_attribute(:quantity, new_quantity)
+          @cart_item.delete
       end
-     end
+    end
     @cart_item.save
     redirect_to cart_items_path,notice:"カートに商品が入りました"
   end

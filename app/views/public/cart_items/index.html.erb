@@ -14,16 +14,19 @@
   <%= button_to "カートを空にする", cart_items_path, method: :delete %>
 
   <tbody>
-   <% @cartitems.each do |f|%>
+   <% @cart_items.each do |cart_item|%>
     <tr>
-     <td><%= f.hidden_field :item_id, value: @item.id %></td>
-     <td><%= f.item.with_tax_price %></td>
+     <td><%= cart_item.item.name %></td>
+     <td><%= cart_item.item.with_tax_price %></td>
+     <%= form_with model: cart_item do |f| %>
      <td><%= f.select :quantity, [size: 10, min: 1], {include_blank: '個数選択'} %></td>
-     <td><%= f.subtotal %></td>
+     <% end %>
+     <td><%= cart_item.subtotal %></td>
      <td><%= link_to "削除する", cart_items_path, method: :delete, data: { confirm: '本当に削除しますか?' } %></td>
-      <% @合計金額 +=  (cart_item.item.price * 1.1).floor * cart_item.amount %>
+      <% @total += (cart_item.item.with_tax_price).floor * cart_item.quantity %>
     </tr>
    <% end %>
+
   </tbody>
  </table>
 
