@@ -21,7 +21,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     resources :order_items, only: [:update]
     resources :orders, only: [:show, :update]
   end
-  
+
   scope module: :public do
     root to: "homes#top"
     get "about" =>"homes#about", as: 'about'
@@ -34,9 +34,9 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     get 'customers/check' => 'customers#check', as: 'check'
     resources :cart_items, only: [:index, :update, :destroy, :create]
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all'
-    resources :orders, only: [:new, :create, :index, :show]
-    post "orders/confilm" =>"orders#confilm", as: 'confilm'
     get "orders/complete" =>"orders#complete", as: 'complete'
+    post "orders/confilm" =>"orders#confilm", as: 'confilm'
+    resources :orders, only: [:new, :create, :index, :show]
     resources :shipping_addresses, only:[:index, :edit, :update, :destroy, :create]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
