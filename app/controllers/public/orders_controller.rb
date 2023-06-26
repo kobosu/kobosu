@@ -1,9 +1,6 @@
 class Public::OrdersController < ApplicationController
-<<<<<<< HEAD
+
   before_action :authenticate_customer!
-=======
-  #before_action :authenticate_customers!
->>>>>>> origin/develop
 
   def new
      @order = Order.new
@@ -62,10 +59,10 @@ class Public::OrdersController < ApplicationController
       order_item.quantity = cart.quantity
       order_item.purchase_price = cart.item.with_tax_price
       order_item.save
-      end
+    end
 
-      redirect_to complete_path
-      @cart_items.destroy_all
+    redirect_to complete_path
+    @cart_items.destroy_all
 
   end
 
