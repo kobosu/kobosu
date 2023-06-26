@@ -16,10 +16,11 @@
   <tbody>
    <% @cart_items.each do |cart_item|%>
     <tr>
-     <td><%= cart_item.item.name %></td>
+     <td><%= image_tag cart_item.item.get_profile_image(50,50) %><%= cart_item.item.name %></td>
      <td><%= cart_item.item.with_tax_price %></td>
      <%= form_with model: cart_item do |f| %>
-     <td><%= f.select :quantity, [size: 10, min: 1], {include_blank: '個数選択'} %></td>
+     <td><%= f.select :quantity, [*(1..10)], {include_blank: '個数選択'} %>
+     <%= f.submit "変更" %></td>
      <% end %>
      <td><%= cart_item.subtotal %></td>
      <td><%= link_to "削除する", cart_items_path, method: :delete, data: { confirm: '本当に削除しますか?' } %></td>
@@ -27,6 +28,10 @@
     </tr>
    <% end %>
   </tbody>
-  <%= link_to "買い物を続ける", items_path %>
  </table>
-
+<table>
+ <td>合計金額</td>
+ <td><%= @total %></td>
+</table>
+  <%= link_to "買い物を続ける", items_path %>
+  <%= link_to "情報入力に進む", new_order_path %>
