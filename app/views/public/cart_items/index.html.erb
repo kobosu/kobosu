@@ -11,7 +11,7 @@
    </tr>
   </thead>
 
-  <%= button_to "カートを空にする", cart_items_path, method: :delete %>
+  <%= button_to "カートを空にする", destroy_all_path, method: :delete %>
 
   <tbody>
    <% @cart_items.each do |cart_item|%>
@@ -23,7 +23,7 @@
      <%= f.submit "変更" %></td>
      <% end %>
      <td><%= cart_item.subtotal %></td>
-     <td><%= link_to "削除する", cart_items_path, method: :delete, data: { confirm: '本当に削除しますか?' } %></td>
+     <td><%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, data: { confirm: '本当に削除しますか?' } %></td>
       <% @total += (cart_item.item.with_tax_price).floor * cart_item.quantity %>
     </tr>
    <% end %>

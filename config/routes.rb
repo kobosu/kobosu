@@ -32,8 +32,8 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     resources :customers, only: [:edit, :update]
     get 'customers/mypage' => 'customers#show', as: 'mypage'
     get 'customers/check' => 'customers#check', as: 'check'
-    resources :cart_items, only: [:index, :update, :destroy, :create]
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all'
+    resources :cart_items, only: [:index, :update, :destroy, :create]
     resources :orders, only: [:new, :create, :index, :show]
     post "orders/confilm" =>"orders#confilm", as: 'confilm'
     post "orders/complete" =>"orders#complete", as: 'complete'
