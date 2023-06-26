@@ -1,0 +1,39 @@
+
+ <h3>会員情報編集</h3>
+      <%= form_with model: @customer, local:true do |f| %>
+      <table class="table table-hover table-inverse table-bordered">
+          <tr>
+            <th><%= f.label :first_name, "氏名" %></th>
+            <td><%= f.text_field :first_name %></td>
+            <td><%= f.text_field :last_name %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :first_name_kana, "フリガナ" %></th>
+            <td><%= f.text_field :first_name_kana %></td>
+            <td><%= f.text_field :last_name_kana %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :postcode, "郵便番号" %></th>
+            <td><%= f.text_field :postcode %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :address, "住所" %></th>
+            <td><%= f.text_area :address %></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th><%= f.label :telephone_number, "電話番号" %></th>
+            <td><%= f.text_field :telephone_number %></td>
+          </tr>
+          <tr>
+            <th><%= f.label :email, "メールアドレス" %></th>
+            <td><%= f.text_field :email %></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><%= f.submit "編集内容を保存", class:"btn btn-success" %></td>
+            <td><%= link_to "退会する", check_path, class:"btn btn-danger" %></td>
+          </tr>
+      </table>
+      <% end %>
+
