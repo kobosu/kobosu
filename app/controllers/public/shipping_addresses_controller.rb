@@ -40,6 +40,7 @@ class Public::ShippingAddressesController < ApplicationController
     redirect_to shipping_addresses_path
   end
 
+protected
 
  def shipping_address_params
     params.require(:shipping_address).permit(:name, :address, :postcode)
