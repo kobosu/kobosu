@@ -1,11 +1,11 @@
 class Admin::OrdersController < ApplicationController
 
   def index
-    @orders = Order.all
+    @orders = Order.page(params[:page])
   end
   
   def order_history
-    @orders = CustomerId.Order.all
+    @orders = CustomerId.Order.page(params[:page])
     @order = Order.find(paramas[:id])
   end
   
