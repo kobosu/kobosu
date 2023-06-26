@@ -19,7 +19,8 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :order_items, only: [:update]
-    resources :orders, only: [:show, :update]
+    resources :orders, only: [:index, :show, :update,]
+    get 'orders' => 'orders#order_history', as: 'order_history'
   end
   
   scope module: :public do
