@@ -26,7 +26,7 @@
       <% @total += (cart_item.item.with_tax_price).floor * cart_item.quantity %>
     </tr>
    <% end %>
-
   </tbody>
+  <%= link_to "買い物を続ける", items_path %>
  </table>
 
