@@ -10,8 +10,7 @@ module Kobosu
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
-    
-   # config.i18n.default_locale = :ja
+    config.i18n.default_locale = :ja
 
     # Configuration for the application, engines, and railties goes here.
     #

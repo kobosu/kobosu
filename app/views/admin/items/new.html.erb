@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
     <h2>商品新規登録</h2>
       <%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
 
@@ -13,7 +11,7 @@
         <%= f.text_area :explanation, placeholder: "ここに説明文を記述します" %>
 
         <label>ジャンル</label>
-        <%= f.collection_select :genre_id, @genres, :id, :name, :prompt => "･･･選択してください･･" %>
+        <%= f.collection_select :genre_id, @genres, :id, :name, :prompt => "･･･選択してください･･･" %>
         <label>税抜価格</label>
         <%= f.number_field :tax_out_price, placeholder: "1,000" %>
 
@@ -25,7 +23,3 @@
 
         <%= f.submit '新規登録' %>
         <% end %>
-=======
-<h1>Items#new</h1>
-<p>Find me in app/views/items/new.html.erb</p>
->>>>>>> origin/develop

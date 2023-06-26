@@ -59,4 +59,5 @@ gem 'devise'
 
 gem "enum_help"
 
+gem 'pry-rails'
 gem 'kaminari','~> 1.2.1'
