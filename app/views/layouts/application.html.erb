@@ -10,70 +10,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="d-flex flex-column vh-100">
-    <header class="shadow-sm">
-      <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-      <a class="navbar-brand p-3" ></a>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ml-auto">
-              <% if customer_signed_in? %>
-               <li class="nav-item">
-                 <%= link_to  mypage_path, class: 'nav-link text-dark' do%>
-                 <i class="fa-solid fa-person"></i>マイページ<% end %>
-                 </li>
-              <li class="nav-item">
-                <%= link_to  items_path, class: 'nav-link text-dark' do%>
-                <i class="fa-solid fa-cake-candles"></i>商品一覧<% end %>
-                 </li>
-             <li class="nav-item">
-               <%= link_to  cart_items_path(current_customer.id), class: 'nav-link text-dark' do %>
-               <i class="fa-solid fa-cart-shopping"></i> カート<% end %></li>
-     　　　　　　　 <li class="nav-item">
-        <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' do %>
-        <i class="fas fa-sign-out-alt"></i>Log out<% end %> </li>
-        <% elsif admin_signed_in? %>
-         <li class="nav-item">
-              <%= link_to admin_items_path, class: "nav-link text-dark" do %>
-               <i class="fa-solid fa-cake-candles"></i>商品一覧<% end %>
-            <li class="nav-item">
-              <%= link_to admin_customers_path, class: "nav-link text-dark" do %>
-                <i class="fa-solid fa-users"></i>会員一覧<% end %></li>
-            <li class="nav-item">
-              <%= link_to admin_root_path, class: "nav-link text-dark" do %>
-                <i class="fa-solid fa-bags-shopping"></i>注文履歴一覧<% end %></li>
-            <li class="nav-item">
-              <%= link_to admin_genres_path, class: "nav-link text-dark" do %>
-                <i class="fa-duotone fa-cake-slice"></i>ジャンル一覧<% end %></li>
-            <li class="nav-item">
-              <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link text-dark" do %>
-                <i class="fas fa-sign-out-alt"></i>Log out<% end %> </li>
-        <% else %>
-        　<li class="nav-item">
-                 <%= link_to  about_path, class: 'nav-link text-dark' do%>
-                 <i class="fa-solid fa-house"></i>About<% end %>
-                 </li>
-              <li class="nav-item">
-                <%= link_to  items_path, class: 'nav-link text-dark' do%>
-                <i class="fa-solid fa-cake-candles"></i>商品一覧<% end %>
-                 </li>
-             <li class="nav-item">
-               <%= link_to  new_customer_registration_path, class: 'nav-link text-dark' do %>
-               <i class="fa-regular fa-address-card"></i> 新規登録<% end %></li>
-     　　　　　　　 <li class="nav-item">
-        <%= link_to customer_session_path, class: 'nav-link text-dark' do %>
-        <i class="fas fa-sign-in-alt"></i>ログイン<% end %> </li>
-        <% end %>
-  </header>
+  <body>
     <%= yield %>
   </body>
-  <footer>
-    <div class="container mt-5">
-  	<div class="row">
-    	<div class="mx-auto">
-    		<p>CopyRight Infratop.inc</p>
-    	</div>
-    </div>
-  </div>
-  </footer>
 </html>
