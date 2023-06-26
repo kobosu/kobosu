@@ -1,14 +1,13 @@
 class Public::OrdersController < ApplicationController
   def new
      @order = Order.new
-     
+
   end
 
   def confilm
     @order = Order.new(order_params)
 
     case select_address
-
     when 0 then
     @order = Order.new(order_params)
     @order.postcode = current_customer.postcode
@@ -36,14 +35,24 @@ class Public::OrdersController < ApplicationController
     @order.name = @shipping_address.name
 
     end
-    @cart_items = current_costomer.cart_items
+
+    @cart_items = current_costomer.cart_items.all
+    # @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
+    @cart_items.subtotal.each do |num|
+    @all_order_price =+ num
+    end
     @postage = 800
-    
+    @total_price = @all_order_price + @postage
+
   end
-  
+
   def create
-    @order = Order.new(order_params)
-    @order.save
+    @order = Order.new
+    @order.payment_method = params[:order][:payment_method]
+    @order.billing_amount = params[:order][:billing_amount]
+    @order.postcode = params[:order][:postcode]
+    @order.address = params[:order][:address]
+    @order.name = params[:order][:name]
   end
 
   def complete

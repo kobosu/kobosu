@@ -25,28 +25,27 @@
         <thead>
           <tr>
             <th>送料</th>
-            <th>@postage</th>
+            <th><%= @postage %></th>
         <tbody>
           <tr>
             <td>商品合計</td>
-            <td>
-            </td>
+            <td><%= @all_order_price.to_s(:delimited) %></td>
             <td>請求金額</td>
-            <td></td>
+            <td><%= @total_price.to_s(:delimited) %></td>
           </tr>
         </tbody>
 
       <label>支払方法</label>
-      　<%= order.payment_method %>
+      　<%= @order.payment_method %>
       <label>お届け先</label>
-      　〒<%= order.postcode + address + name %>
+      　〒<%= @order.postcode + @order.address + @order.name %>
 
       <%= form_with model: @order, url: order_path, method: :post do |f| %>
         <%= f.hidden_field :payment_method %>
-        <%= f.hidden_field :billing_amount %>
+        <%= f.hidden_field :billing_amount, :value => @total_price %> %>
         <%= f.hidden_field :postcode %>
         <%= f.hidden_field :address %>
         <%= f.hidden_field :name %>
         <%= f.hidden_field :postage, :value => @postage %>
         <%= f.select "注文を確定する" %>
-        <% end %>
+      <% end %>
