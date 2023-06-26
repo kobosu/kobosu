@@ -1,0 +1,26 @@
+
+<h2>会員一覧</h2>
+  <table>
+   <thead>
+    <tr>
+      <th>会員ID</th>
+      <th>指名</th>
+      <th>メールアドレス</th>
+      <th>ステータス</th>
+    </tr>
+   </thead>
+     <tbody>
+<% @customers.each do |customer| %>
+   <tr>
+    <td><%= customer.id %></td>
+    <td><%= link_to customer.last_name+customer.first_name, admin_customer_path(customer.id) %></td>
+    <td><%= customer.email %></td>
+    <td><% if customer.is_active %>
+    有効
+   <% else %>
+   退会済み
+    <% end %></td>
+  </tr>
+  </tbody>
+<% end %>
+</table>
