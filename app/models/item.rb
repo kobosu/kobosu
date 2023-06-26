@@ -2,8 +2,10 @@ class Item < ApplicationRecord
 
   has_one_attached :profile_image
 
+  has_many :order_items, dependent: :destroy
+  #has_many :order_item_orders, through: order_items, source: order
   belongs_to :genre
-  has_many :cart_item
+  has_many :cart_items
 
   def get_profile_image(width, height)
   unless profile_image.attached?
