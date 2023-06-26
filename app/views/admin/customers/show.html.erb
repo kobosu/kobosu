@@ -1,6 +1,10 @@
-
+<div class='container' >
+  <div class='row'>
+    <div class='col'>
+     <table>
+      <thead>
 <h2><%= @customer.last_name+@customer.first_name %>さんの会員詳細</h2>
-<table>
+  </thead>
   <tbody>
    <tr>
      <td>会員ID</td>
@@ -44,5 +48,8 @@
 <div>
 <%= link_to "編集する", edit_admin_customer_path(@customer.id) %>
 |
-<%= "注文履歴一覧を見る"%>
+<%= '注文一覧を見る'%>
+</div>
+</div>
+</div>
 </div>
