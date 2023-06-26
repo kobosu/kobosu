@@ -3,7 +3,7 @@ class Item < ApplicationRecord
   has_one_attached :profile_image
 
   belongs_to :genre
-
+  has_many :cart_item
 
   def get_profile_image(width, height)
   unless profile_image.attached?
@@ -12,7 +12,7 @@ class Item < ApplicationRecord
   end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
-  
+
   def with_tax_price
     (tax_out_price * 1.1).floor
   end
