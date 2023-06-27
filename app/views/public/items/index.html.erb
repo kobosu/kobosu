@@ -2,9 +2,9 @@
   (全<%= Item.where(is_onsele: true).count %>件)
   </h2>
 
-  　   <table class="table table-hover">
-  　     <tbody>
-  　       <% @items.each do |item| %>
+  　<table class="table table-hover">
+  　   <tbody>
+  　     <% @items.each do |item| %>
   　       <% unless item.is_onsele == false %>
           <tr>
             <th><%= link_to item_path(item.id) do %>
@@ -12,10 +12,10 @@
                 <% end %>
             </th>
             <th><%= link_to item.name, item_path(item.id) %></th>
-            <th>￥<%= item.tax_out_price.to_s(:delimited) %></th>
+            <th>￥<%= item.with_tax_price.to_s(:delimited) %></th>
           </tr>
           <% end %>
-          <% end %>
-        </tbody>
-      </table>
-
+        <% end %>
+      </tbody>
+    </table>
+   <%= paginate @items %>
