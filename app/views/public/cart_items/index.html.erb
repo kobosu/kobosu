@@ -20,12 +20,12 @@
    <% @cart_items.each do |cart_item|%>
     <tr>
      <td><%= image_tag cart_item.item.get_profile_image(50,50) %><%= cart_item.item.name %></td>
-     <td><%= cart_item.item.with_tax_price %></td>
+     <td><%= cart_item.item.with_tax_price.to_s(:delimited) %></td>
      <%= form_with model: cart_item do |f| %>
      <td><%= f.select :quantity, [*(1..10)], {include_blank: '個数選択'} %>
      <%= f.submit "変更" %></td>
      <% end %>
-     <td><%= cart_item.subtotal %></td>
+     <td><%= cart_item.subtotal.to_s(:delimited) %></td>
      <td><%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, data: { confirm: '本当に削除しますか?' } %></td>
       <% @total += (cart_item.item.with_tax_price).floor * cart_item.quantity %>
     </tr>
