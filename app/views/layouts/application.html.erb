@@ -5,19 +5,23 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/e512670c76.js" crossorigin="anonymous"></script>
   </head>
 
   <body class="d-flex flex-column vh-100">
     <header class="shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-      <a class="navbar-brand p-3" ></a>
+          <div class="logo_area">
+      <a class="navbar-brand" href="/" ><%= image_tag 'icon.jpeg', class: "logo",size: '100x100' %></a>
+      </div>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <% if customer_signed_in? %>
+               <h5>ようこそ、<%= current_customer.first_name %>さん！</h5>
                <li class="nav-item">
                  <%= link_to  mypage_path, class: 'nav-link text-dark' do%>
                  <i class="fa-solid fa-person"></i>マイページ<% end %>
@@ -29,7 +33,7 @@
              <li class="nav-item">
                <%= link_to  cart_items_path(current_customer.id), class: 'nav-link text-dark' do %>
                <i class="fa-solid fa-cart-shopping"></i> カート<% end %></li>
-     　　　　　　　 <li class="nav-item">
+             <li class="nav-item">
         <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' do %>
         <i class="fas fa-sign-out-alt"></i>Log out<% end %> </li>
         <% elsif admin_signed_in? %>
@@ -49,20 +53,18 @@
               <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link text-dark" do %>
                 <i class="fas fa-sign-out-alt"></i>Log out<% end %> </li>
         <% else %>
-        　<li class="nav-item">
+        　     <li class="nav-item">
                  <%= link_to  about_path, class: 'nav-link text-dark' do%>
-                 <i class="fa-solid fa-house"></i>About<% end %>
-                 </li>
+                 <i class="fa-solid fa-house"></i>About<% end %></li>
               <li class="nav-item">
                 <%= link_to  items_path, class: 'nav-link text-dark' do%>
-                <i class="fa-solid fa-cake-candles"></i>商品一覧<% end %>
-                 </li>
-             <li class="nav-item">
+                <i class="fa-solid fa-cake-candles"></i>商品一覧<% end %></li>
+              <li class="nav-item">
                <%= link_to  new_customer_registration_path, class: 'nav-link text-dark' do %>
                <i class="fa-regular fa-address-card"></i> 新規登録<% end %></li>
-     　　　　　　　 <li class="nav-item">
-        <%= link_to customer_session_path, class: 'nav-link text-dark' do %>
-        <i class="fas fa-sign-in-alt"></i>ログイン<% end %> </li>
+              <li class="nav-item">
+               <%= link_to customer_session_path, class: 'nav-link text-dark' do %>
+               <i class="fas fa-sign-in-alt"></i>ログイン<% end %> </li>
         <% end %>
   </header>
     <%= yield %>

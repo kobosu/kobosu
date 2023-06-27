@@ -31,12 +31,11 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     #resources :sessions, only: [:new, :create, :destroy]
     patch 'customers/withdraw' => 'customers#withdraw', as: 'withdraw'
     resources :customers, only: [:edit, :update]
-    get 'customers/mypage' resources :orders, only: [:new, :create, :index, :show]=> 'customers#show', as: 'mypage'
+    get 'customers/mypage' => 'customers#show', as: 'mypage'
     get 'customers/check' => 'customers#check', as: 'check'
     delete 'cart_items/destroy_all' => 'cart_items#destroy_all', as: 'destroy_all'
     resources :cart_items, only: [:index, :update, :destroy, :create]
     get "orders/complete" =>"orders#complete", as: 'complete'
-　　resources :orders, only: [:new, :create, :index, :show]
     post "orders/confilm" =>"orders#confilm", as: 'confilm'
     resources :orders, only: [:new, :create, :index, :show]
     resources :shipping_addresses, only:[:index, :edit, :update, :destroy, :create]

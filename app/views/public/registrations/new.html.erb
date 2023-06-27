@@ -1,4 +1,9 @@
-<h2>Sign up</h2>
+
+<div class='container'>
+  <div class='row'>
+    <div class='col text-center'>
+      <%= stylesheet_link_tag 'registrations' %>
+<h2>新規会員登録</h2>
 
 <%= form_with model:@customer,url: customer_registration_path do |f| %>
   <%= render "public/shared/error_messages", resource: resource %>
@@ -7,38 +12,37 @@
   <tr>
         
         <td class="field"><%= f.label :last_name %></td>
-        <td><%= f.text_field :last_name, autofocus: true %></td>
+        <td><%= f.text_field :last_name, autofocus: true ,:placeholder =>"山田"%></td>
         <td class="field"><%= f.label :first_name %></td>
-        <td><%= f.text_field :first_name, autofocus: true %></td>
+        <td><%= f.text_field :first_name, autofocus: true,:placeholder =>"太郎" %></td>
   </tr>
   
   <tr>
         
         <td class="field"><%= f.label :last_name_kana %></td>
-        <td><%= f.text_field :last_name_kana, autofocus: true %></td>
+        <td><%= f.text_field :last_name_kana, autofocus: true, :placeholder =>"ヤマダ" %></td>
         <td class="field"><%= f.label :first_name_kana %></td>
-        <td><%= f.text_field :first_name_kana, autofocus: true %></td>
+        <td><%= f.text_field :first_name_kana, autofocus: true, :placeholder =>"タロウ" %></td>
   </tr>
   
    <tr>
         
         <td class="field"><%= f.label :郵便番号 %></td>
-        <td><%= f.text_field :postcode, autofocus: true %></td>
+        <td><%= f.text_field :postcode, autofocus: true , :placeholder =>"000000" %></td>
    </tr>
    <tr>
         
         <td class="field"><%= f.label :住所 %></td>
-        <td><%= f.text_field :address, autofocus: true %></td>
+        <td><%= f.text_field :address, autofocus: true, :placeholder =>"東京都渋谷区" %></td>
    </tr>
    
    <tr>
-        <th=>電話番号</th>
         <td class="field"><%= f.label :telephone_number %></td>
-        <td><%= f.text_field :telephone_number, autofocus: true %></td>
+        <td><%= f.text_field :telephone_number, autofocus: true, :placeholder =>"000000" %></td>
    </tr>
    <tr>
     <td class="field"><%= f.label :email %></td>
-    <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+    <td><%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder =>"test@test.com" %></td>
    </tr>
    <tr>
     <td class="field"><%= f.label :password %>
@@ -58,5 +62,8 @@
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
-
+<h2>既に登録済みの方</h2>
 <%= render "public/shared/links" %>
+</div>
+  </div>
+</div>
