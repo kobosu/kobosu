@@ -1,5 +1,10 @@
 class Item < ApplicationRecord
 
+validates :name, presence: true
+validates :tax_out_price, presence: true
+validates :explanation, presence: true
+# validates :is_onsele, presence: true
+
   has_one_attached :profile_image
 
   has_many :order_items, dependent: :destroy

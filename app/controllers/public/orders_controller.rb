@@ -1,4 +1,5 @@
 class Public::OrdersController < ApplicationController
+
   before_action :authenticate_customer!
 
   def new
@@ -58,10 +59,10 @@ class Public::OrdersController < ApplicationController
       order_item.quantity = cart.quantity
       order_item.purchase_price = cart.item.with_tax_price
       order_item.save
-      end
+    end
 
-      redirect_to complete_path
-      @cart_items.destroy_all
+    redirect_to complete_path
+    @cart_items.destroy_all
 
   end
 
@@ -69,9 +70,12 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = current_customer.all
   end
 
   def show
+    @order = order.find(params[:id])
+    @orders = current_customer.order
   end
 
   private
