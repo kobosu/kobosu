@@ -12,7 +12,7 @@
               <td><%= @item.explanation %></td>
             </tr>
             <tr>
-              <td>￥<%= @item.tax_out_price.to_s(:delimited) %>（税込）
+              <td>￥<%= @item.with_tax_price.to_s(:delimited) %>（税込）
               </td>
             </tr>
           </tbody>
