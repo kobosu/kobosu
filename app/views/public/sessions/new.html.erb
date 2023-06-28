@@ -18,6 +18,7 @@
       </tr>
 
       <tr>
+        <td></td>
         <% if devise_mapping.rememberable? %>
         <td class="field">
           <%= f.check_box :remember_me %>
@@ -26,7 +27,7 @@
         <% end %>
       </tr>
       <tr>
-        <td class="field">
+        <td class="actions">
          <%= f.submit "Log in" %><td>
         </tr>
          <% end %>
