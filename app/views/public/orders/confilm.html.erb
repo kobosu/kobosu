@@ -3,6 +3,7 @@
 　　　<table class="table table-hover">
         <thead>
           <tr>
+            <th></th>
             <th>商品名</th>
             <th>単価(税込)</th>
             <th>数量</th>
@@ -12,6 +13,7 @@
         <tbody>
         <% @cart_items.each do |cart_item| %>
           <tr>
+            <td><%= image_tag cart_item.item.get_profile_image(50,50) %></td>
             <td><%= cart_item.item.name %></td>
             <td><%= (cart_item.item.with_tax_price).to_s(:delimited) %></td>
             <td><%= cart_item.quantity %></td>
