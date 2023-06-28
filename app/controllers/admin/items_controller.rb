@@ -15,7 +15,7 @@ before_action :authenticate_admin!
   end
 
   def index
-    @items = Item.all
+    @items = Item.page(params[:page])
     @genres = Genre.all
 
   end
@@ -30,9 +30,9 @@ before_action :authenticate_admin!
   end
 
   def update
-    item = Item.find(params[:id])
-    item.update(item_params)
-    redirect_to admin_item_path(item.id)
+    @item = Item.find(params[:id])
+    @item.update(item_params)
+    redirect_to admin_item_path(@item.id)
   end
 
   def item_params

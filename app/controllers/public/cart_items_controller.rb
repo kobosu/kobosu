@@ -27,6 +27,9 @@ class Public::CartItemsController < ApplicationController
     @cart_items.each do |cart_item|
       if cart_item.item_id==@cart_item.item_id
           new_quantity = cart_item.quantity + @cart_item.quantity
+          if new_quantity > 10
+            new_quantity = 10
+          end
           cart_item.update_attribute(:quantity, new_quantity)
           @cart_item.delete
       end
