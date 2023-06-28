@@ -1,28 +1,65 @@
-
-    <h2>商品編集</h2>
-
-      <%= form_with model: @item, url: admin_item_path, method: :patch do |f| %>
-
-      <label>商品画像</label><br>
-        <%= f.file_field :profile_image, accept: "image/*" %>
-
-        <label>商品名</label>
-        <%= f.text_field :name %>
-
-        <label>商品説明</label>
-        <%= f.text_area :explanation %>
-
-        <label>ジャンル</label>
-        <%= f.collection_select :genre_id, @genres, :id, :name %>
-
-        <label>税抜価格</label>
-        <%= f.number_field :tax_out_price %>
-
-        <label>販売ステータス</label>
-        <%= f.radio_button :is_onsele, true %>
-        <%= f.label :is_onsele, "販売中" %>
-        <%= f.radio_button :is_onsele, false %>
-        <%= f.label :is_onsele, "販売停止" %>
-
-        <%= f.submit '変更を保存' %>
-        <% end %>
+<div class="container-md">
+  <h2>商品編集</h2>
+  <%= form_with model: @item, url: admin_item_path, method: :patch do |f| %>
+    <table>
+      <tr>
+        <div class="form-group">
+          <td><p>商品画像</p></td>
+          <td>
+            <%= f.file_field :profile_image, accept: "image/*" %>
+          </td>
+        </div>
+      </tr>
+        <div class="form-group">
+          <td><p>商品名</p></td>
+          <td>
+            <%= f.text_field :name %>
+          </td>
+        </div>
+      </tr>
+      <tr>
+        <div class="form-group">
+          <td><p>商品説明</p></td>
+          <td>
+            <%= f.text_area :explanation %>
+          </td>
+        </div>
+      </tr>
+      <tr>
+        <div class="form-group">
+          <td><p>ジャンル</p></td>
+          <td>
+            <%= f.collection_select :genre_id, @genres, :id, :name %>
+          </td>
+        </div>
+      </tr>
+      <tr>
+        <div class="form-group">
+          <td><p>税抜価格</p></td>
+          <td>
+            <%= f.number_field :tax_out_price %>
+          </td>
+        </div>
+      </tr>
+      <tr>
+        <div class="form-group">
+          <td><p>販売ステータス</p></td>
+          <td>
+            <%= f.radio_button :is_onsele, true %>
+            <%= f.label :is_onsele, "販売中" %>
+            <%= f.radio_button :is_onsele, false %>
+            <%= f.label :is_onsele, "販売停止" %>
+          </td>
+        </div>
+      </tr>
+      <tr>
+        <div class="form-group">
+          <td></td>
+          <td>
+            <%= f.submit '変更を保存', class: "btn btn-sm btn-success" %>
+          </td>
+        </div>
+      </tr>
+    </table>
+     <% end %>
+</div>

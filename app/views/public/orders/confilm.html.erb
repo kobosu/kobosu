@@ -1,50 +1,50 @@
-<h2>注文情報確認</h2>
-
-　　　<table class="table table-hover">
-        <thead>
+<div class="container">
+　　<h3 class="ml-5 mt-4">注文情報確認</h3>
+　　<div class="row">
+　　  <table class= "col-md-8 ml-5 pl" border="1" style="border-collapse: collapse">
           <tr>
-            <th></th>
-            <th>商品名</th>
-            <th>単価(税込)</th>
-            <th>数量</th>
-            <th>小計</th>
+            <th class = "text-center">商品名</th>
+            <th class = "text-center">単価(税込)</th>
+            <th class = "text-center">数量</th>
+            <th class = "text-center">小計</th>
           </tr>
-        </thead>
-        <tbody>
+
         <% @cart_items.each do |cart_item| %>
           <tr>
-            <td><%= image_tag cart_item.item.get_profile_image(50,50) %></td>
-            <td><%= cart_item.item.name %></td>
-            <td><%= (cart_item.item.with_tax_price).to_s(:delimited) %></td>
-            <td><%= cart_item.quantity %></td>
-            <td><%= (((cart_item.item.tax_out_price * 1.1).floor) * cart_item.quantity).to_s(:delimited) %></td>
+            <td><%= image_tag cart_item.item.get_profile_image(100,70) %><%= cart_item.item.name %></td>
+            <td class = "text-center"><%= (cart_item.item.with_tax_price).to_s(:delimited) %></td>
+            <td class = "text-center"><%= cart_item.quantity %></td>
+            <td class = "text-center"><%= (((cart_item.item.tax_out_price * 1.1).floor) * cart_item.quantity).to_s(:delimited) %></td>
           </tr>
         <% end %>
-        </tbody>
       </table>
 
-　　　<table class="table table-hover">
-　　　  <tbody>
+　　　<table class= "col-md-2 ml-5" border="1" style="border-collapse: collapse" height= "40%">
           <tr>
-            <td>送料</td>
-            <td><%= @postage %></td>
+            <th class ="text-center">送料</th>
+            <td class = "text-center"><%= @postage %></td>
          </tr>
           <tr>
-            <td>商品合計</td>
-            <td><%= @all_order_price.to_s(:delimited) %></td>
+            <th class ="text-center">商品合計</th>
+            <td class = "text-center"><%= @all_order_price.to_s(:delimited) %></td>
           </tr>
           <tr>
-            <td>請求金額</td>
-            <td><%= @total_price.to_s(:delimited) %></td>
+            <th class ="text-center">請求金額</th>
+            <td class = "text-center"><%= @total_price.to_s(:delimited) %></td>
           </tr>
-        </tbody>
       </table>
-
-      <label>支払方法</label>
-      　<%= @order.payment_method_i18n %><br>
-      <label>お届け先</label>
-      　〒<%= @order.postcode + ' ' +  @order.address + ' ' +  @order.name %><br>
-
+    </div>
+    <div class = "row" >
+      <strong class = "mt-5 ml-5" >支払方法</strong>
+      　<div class = "mt-5 ml-4" ><%= @order.payment_method_i18n %></div>
+    </div>
+    <div class = "row" >
+      <strong class = "mt-4 ml-5" >お届け先</strong>
+        <div class = "mt-4 ml-4" >
+      　〒<%= @order.postcode + ' ' +  @order.address + ' ' +  @order.name %>
+      　</div>
+    </div>
+    <div class="row justify-content-center py-5">
       <%= form_with model: @order, url: orders_path, method: :post do |f| %>
         <%= f.hidden_field :payment_method %>
         <%= f.hidden_field :billing_amount, :value => @total_price %>
@@ -52,5 +52,7 @@
         <%= f.hidden_field :address %>
         <%= f.hidden_field :name %>
         <%= f.hidden_field :postage, :value => @postage %>
-        <%= f.submit "注文を確定する" %>
+        <%= f.submit "注文を確定する", class: "btn btn-success" %>
       <% end %>
+      </div>
+    </div>

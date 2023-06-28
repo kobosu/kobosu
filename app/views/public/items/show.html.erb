@@ -17,10 +17,13 @@
             </tr>
           </tbody>
         </table>
-
-        <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
-        <%= f.hidden_field :customer_id, :value => current_customer.id %>
-        <%= f.hidden_field :item_id, :value => @item.id %>
-        <%= f.select :quantity, *[1..10] %>
-        <%= f.submit "カートに入れる" %></td>
+　　　　<% if customer_signed_in? %>
+        　<%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
+        　<%= f.hidden_field :customer_id, :value => current_customer.id %>
+        　<%= f.hidden_field :item_id, :value => @item.id %>
+        　<%= f.select :quantity, *[1..10] %>
+        　<%= f.submit "カートに入れる" %></td>
+        　<% end %>
+      　<% else %>
+      　　redirect_to request.referer
         <% end %>
