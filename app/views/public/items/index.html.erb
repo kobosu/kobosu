@@ -1,24 +1,23 @@
-  <h2>商品一覧
-  (全<%= Item.where(is_onsele: true).count %>件)
-  </h2>
-
-  　<table class="table table-hover">
-  　   <tbody>
-  　     <% @items.each do |item| %>
-  　     
-          <tr>
-            <th><%= link_to item_path(item.id) do %>
-                <%= image_tag item.get_profile_image(100,100) %>
+ <div class='container'>
+  <div class="row mt-5">
+    <div class="col-lg-auto" style='margin-bottom: 30px;'>
+    <h2>商品一覧
+      (全<%= Item.where(is_onsele: true).count %>件) </h2></div>
+      </div>
+      <div style='margin: 0 auto;'>
+      <div class="row text-center" >
+        <% @items.each do |item|%>
+          <div class="d-inline" style='width: 230px; margin-bottom: 30px;'>
+          <%= link_to item_path(item.id) do %>
+            <%= image_tag item.get_profile_image(170,170) %><br>
                 <% end %>
-            </th>
-            <th><%= link_to item.name, item_path(item.id) %></th>
-            <th>￥<%= item.with_tax_price.to_s(:delimited) %></th>
-            <th> </th>
-          </tr>
+             <%= link_to item.name, item_path(item.id) %><br>
+             ￥<%= item.with_tax_price.to_s(:delimited) %>
+          </div>
           <% end %>
-        
-      </tbody>
-    </table>
-   <%= paginate @items %>
-   
-    
+         </div>
+         </div>
+         <div class="pagination justify-content-center mt-5">
+           <%= paginate @items %>
+         </div>
+</div>
