@@ -11,7 +11,7 @@
     <td>配送先</td>
     <td><%= @order.customer.postcode %>
     <%= @order.customer.address %>
-    <%= @order.customer.name %></td>
+    <%= @order.name %></td>
    </tr>
    <tr>
     <td>支払方法</td>
@@ -53,12 +53,12 @@
     </tr>
    </thead>
      <tbody>
-<% @orders.each do |order| %>
+<% @order.order_items.each do |order_item| %>
    <tr>
-    <td><%= order.order_items.item_id.items.name %></td>
-    <td><%= order.order_items.purchase_price %></td>
-    <td><%= order.order_items.quantity %></td>
-    <td><%= order_items.quantity*order.order_items.purchase_price %></td>
+    <td><%= order_item.item.name %></td>
+    <td><%= order_item.purchase_price %></td>
+    <td><%= order_item.quantity %></td>
+    <td><%= order_item.quantity*order_item.purchase_price %></td>
   </tr>
   </tbody>
 <% end %>
