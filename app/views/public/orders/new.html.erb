@@ -38,16 +38,16 @@
     <%= f.label :select_address, "新しいお届け先" %><br>
   <table>
       <tr>
-        <td class='col-3'>郵便番号(ハイフンなし</td>
-        <td class='col-9'><%= f.text_field :postcode, placeholder: "0000000" %></td>
+        <td>郵便番号(ハイフンなし)</td>
+        <td><%= f.text_field :postcode, placeholder: "0000000" %></td>
       </tr>
     <tr>
-      <td class='col-3'>住所</td>
-    　<td class='col-9'><%= f.text_field :address, placeholder: "東京都千代田区", class: "w-100 h-100" %></td>
+      <td>住所</td>
+    　<td><%= f.text_field :address, placeholder: "東京都千代田区", class: "w-100 h-100" %></td>
     </tr>
     <tr>
-      <td class='col-3'>宛名</td>
-      <td class='col-9'><%= f.text_field :name, placeholder: "コボス" %></td>
+      <td>宛名</td>
+      <td><%= f.text_field :name, placeholder: "コボス" %></td>
     </tr>
   </table>
   </div>
