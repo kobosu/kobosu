@@ -1,26 +1,30 @@
-<h2>商品詳細</h2>
-
-        <table class='table'>
+<div class='container' style='margin-top: 30px;'>
+  <h2>商品詳細</h2>
+  <div class='row' style='margin-top: 30px;'>
+   
+       
+        <div class='col text-center' style='margin-top: 30px;'>
           <P>
-            <%= image_tag @item.get_profile_image(300,300), size:"100x100" %><br>
+            <%= image_tag @item.get_profile_image(300,300), size:"300x300" %><br>
           </p>
-          <tbody>
-            <tr>
-              <td><%= @item.name %></td>
-            </tr>
-            <tr>
-              <td><%= @item.explanation %></td>
-            </tr>
-            <tr>
-              <td>￥<%= @item.with_tax_price.to_s(:delimited) %>（税込）
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
+        </div>
+        <div class='col' style='margin-top: 30px;'>
+          <h3><%= @item.name %></h3>
+            <p><%= @item.explanation %></p>
+          <div class='row'>
+            <div class='col'>
+            <p>￥<%= @item.with_tax_price.to_s(:delimited) %>（税込）</p>
+            </div>
+            <div class='col'>
         <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
         <%= f.hidden_field :customer_id, :value => current_customer.id %>
         <%= f.hidden_field :item_id, :value => @item.id %>
         <%= f.select :quantity, *[1..10] %>
-        <%= f.submit "カートに入れる" %></td>
+        <%= f.submit "カートに入れる", class: "btn btn-success" %>
         <% end %>
+        </div>
+        </div>
+        </div>
+        </div>
+  </div>
+</div>

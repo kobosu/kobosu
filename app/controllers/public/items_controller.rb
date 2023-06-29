@@ -1,7 +1,7 @@
 class Public::ItemsController < ApplicationController
 
   def index
-    @items = Item.where(is_onsele: true).page(params[:page])
+    @items = Item.where(is_onsele: true).page(params[:page]).per(8)
   end
 
   def show

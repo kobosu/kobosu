@@ -1,38 +1,40 @@
-
-<h2>注文履歴詳細</h2>
-
-  <div>
-  <p>購入者</p>
-  <p><%= @order.customer.last_name+@order.customer.first_name %></p>
-  </div>
-
-  <div>
-  <p>注文日</p>
-  <p><%= @order.created_at %></p>
-  </div>
-
-  <div>
-  <p>配送先</p>
-  <p><%= @order.created_at %></p>
-  </div>
-
-  <div>
-   <p>支払い方法</p>
-  <p><%= @order.payment_method %></p>
-  </div>
-
-  <div>
-   <p>注文ステータス</p>
-<%= form_with model: @order, url: admin_order_path(@order.id) do |form| %>
-  <%= form.select :status, [['入金待ち', 0], ['入金確認', 1], ['製作中', 2], ['発送準備中', 3], ['発送済み', 4]], { include_blank: true, selected: 0 } %>
-  </div>
-
-  <div>
-  <%= form.submit '更新', class: "btn btn-success" %>
-  </div>
-<% end %>
-
-<table>
+<div class='container'>
+  <div class='row'>
+    <div class='col'>
+     <h2>注文履歴詳細</h2>
+     <table>
+      <tr>
+        <td>購入者</td>
+        <td><%= @order.customer.last_name+@order.customer.first_name %></td>
+      </tr>
+      <tr>
+        <td>注文日</td>
+        <td><%= @order.created_at %></td>
+      </tr>
+      <tr>
+        <td>配送先</td>
+        <td></td><%= @order.created_at %></td>
+      </tr>
+      <tr>
+        <td>支払い方法</td>
+        <td><%= @order.payment_method %></td>
+      </tr>
+      <tr>
+        <td>注文ステータス</td>
+        <td><%= form_with model: @order, url: admin_order_path(@order.id) do |form| %>
+            <%= form.select :status, [['入金待ち', 0], ['入金確認', 1], ['製作中', 2], ['発送準備中', 3], ['発送済み', 4]], { include_blank: true, selected: 0 } %>
+        </td>
+        <td>
+        <%= form.submit '更新', class: "btn btn-success" %>
+        </td>
+        <% end %>
+       </tr>
+     </table>
+   </div>
+ </div><br><br>
+  <div class='row'>
+    <div class='col-sm'>
+  <table>
    <thead>
     <tr>
       <th>商品名</th>
@@ -59,3 +61,6 @@
 <% end %>
   </tbody>
 </table>
+</div>
+  </div>
+</div>
