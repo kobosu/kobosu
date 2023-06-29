@@ -6,11 +6,11 @@ class Admin::OrdersController < ApplicationController
   
   def order_history
     @orders = CustomerId.Order.page(params[:page])
-    @order = Order.find(paramas[:id])
+    @order = Order.find(params[:id])
   end
   
   def show
-    @order = Order.find(paramas[:id])
+    @order = Order.find(params[:id])
     @order_items = @order.order_items
   end
 
